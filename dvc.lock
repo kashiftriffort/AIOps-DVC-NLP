@@ -12,3 +12,19 @@ stages:
     - path: src/utils/common.py
       md5: d162961d817182441383bdb0e674e685
       size: 675
+  get_data:
+    cmd: python src/stage_01_get_data.py --config=configs/config.yaml
+    deps:
+    - path: configs/config.yaml
+      md5: 691bece0f1f5469f13add40ac48b30c7
+      size: 486
+    - path: src/stage_01_get_data.py
+      md5: 54656ae996ee0ec5f72da1ad2949dc8f
+      size: 1348
+    - path: src/utils/common.py
+      md5: d162961d817182441383bdb0e674e685
+      size: 675
+    outs:
+    - path: data/data.xml
+      md5: a304afb96060aad90176268345e10355
+      size: 37891850

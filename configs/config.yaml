@@ -11,6 +11,8 @@ artifacts:
   TENSORBOARD_ROOT_LOG_DIR: tensorboard_log_dir
   CALLBACKS_DIR: callbacks
 
-source_data:
+source_data_url: "/Users/kashifjilani/Downloads/data.xml"
+
+source_download_dir:
   data_dir: data
   data_file: data.xml

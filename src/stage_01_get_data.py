@@ -3,6 +3,8 @@ import os
 import logging
 from src.utils.common import read_yaml, create_directories
 import urllib.request as req
+import pandas as pd
+import shutil
 
 STAGE = "stage 01 get data" ## <<< change stage name 
 
@@ -14,27 +16,27 @@ logging.basicConfig(
     )
 
 
-def main(config_path, params_path):
+def main(config_path):
     ## read config files
     config = read_yaml(config_path)
-    source_data_dir = config["source_data"]["data_dir"]
-    source_data_file = config["source_data"]["data_file"]
+    source_data_url = config["source_data_url"]
 
-    source_data_path = os.path.join(source_data_dir,source_data_file)
-    
-    
+    local_data_dir = config["source_download_dir"]["data_dir"]
+    create_directories([local_data_dir])
 
+    data_filename = config["source_download_dir"]["data_file"]
+    local_data_filepath = os.path.join(local_data_dir, data_filename)
+    shutil.copy(source_data_url, local_data_filepath)
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
     args.add_argument("--config", "-c", default="configs/config.yaml")
-    args.add_argument("--params", "-p", default="params.yaml")
     parsed_args = args.parse_args()
 
     try:
         logging.info("\n********************")
         logging.info(f">>>>> stage {STAGE} started <<<<<")
-        main(config_path=parsed_args.config, params_path=parsed_args.params)
+        main(config_path=parsed_args.config)
         logging.info(f">>>>> stage {STAGE} completed!<<<<<\n")
     except Exception as e:
         logging.exception(e)
