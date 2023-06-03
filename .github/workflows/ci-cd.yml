@@ -22,7 +22,7 @@ jobs:
           pip uninstall -y fsspec
           pip install fsspec==2022.7.1
 
-          dvc repro -v
+          dvc repro
 
           echo "# REPORTS" >> report.md
           echo "## metrics" >> report.md
