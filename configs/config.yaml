@@ -5,8 +5,10 @@ artifacts:
   PREPARED_DATA: prepared
   TRAIN_DATA: train.tsv
   TEST_DATA: test.tsv
+  FEATURIZED_DATA: features
+  FEATURIZED_TRAIN_DATA: train.pkl
+  FEATURIZED_TEST_DATA: test.pkl
   
-
 source_data_url: "/Users/kashifjilani/Downloads/data.xml"
 
 source_download_dir:
