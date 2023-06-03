@@ -16,8 +16,8 @@ stages:
     cmd: python src/stage_01_get_data.py --config=configs/config.yaml
     deps:
     - path: configs/config.yaml
-      md5: 35b13ade19ed25aee96e4ba82b1a7cb4
-      size: 425
+      md5: 18c73323b7ad53d8414655a170fc7ca1
+      size: 497
     - path: src/stage_01_get_data.py
       md5: 54656ae996ee0ec5f72da1ad2949dc8f
       size: 1348
@@ -32,8 +32,8 @@ stages:
     cmd: python src/stage_02_prepare.py --config=configs/config.yaml --params=params.yaml
     deps:
     - path: configs/config.yaml
-      md5: 35b13ade19ed25aee96e4ba82b1a7cb4
-      size: 425
+      md5: 18c73323b7ad53d8414655a170fc7ca1
+      size: 497
     - path: data/data.xml
       md5: a304afb96060aad90176268345e10355
       size: 37891850
@@ -67,8 +67,8 @@ stages:
       md5: a782fc2e37219d7468d20a15d9f74e91
       size: 16724331
     - path: configs/config.yaml
-      md5: 35b13ade19ed25aee96e4ba82b1a7cb4
-      size: 425
+      md5: 18c73323b7ad53d8414655a170fc7ca1
+      size: 497
     - path: src/stage_03_featurization.py
       md5: 939bbbb6afea84778c9bbfb908b32c2c
       size: 3068
@@ -96,8 +96,8 @@ stages:
       md5: d8595a8d1a9bec46c2667f9f54996812
       size: 8931931
     - path: configs/config.yaml
-      md5: 35b13ade19ed25aee96e4ba82b1a7cb4
-      size: 425
+      md5: 18c73323b7ad53d8414655a170fc7ca1
+      size: 497
     - path: src/stage_04_train.py
       md5: 15aadaa6626f05b2e04ab21ea5cb2160
       size: 2378
@@ -113,3 +113,31 @@ stages:
     - path: artifacts/model/model.pkl
       md5: 40155be878b5ed02caa860edb1bcc2a5
       size: 3176752
+  evaluate:
+    cmd: python src/stage_05_evaluate.py --config=configs/config.yaml
+    deps:
+    - path: artifacts/features/test.pkl
+      md5: 37cd57d353e567722144346d241102a3
+      size: 3802595
+    - path: artifacts/model/model.pkl
+      md5: 40155be878b5ed02caa860edb1bcc2a5
+      size: 3176752
+    - path: configs/config.yaml
+      md5: 18c73323b7ad53d8414655a170fc7ca1
+      size: 497
+    - path: src/stage_05_evaluate.py
+      md5: 235ccc83683aca0a4992c8ebc516aa6b
+      size: 2818
+    - path: src/utils/common.py
+      md5: db34268576c06107db679700ef2e114c
+      size: 1039
+    outs:
+    - path: prc.json
+      md5: 4800f49279ea24ec21a1f42ee630d2c9
+      size: 136277
+    - path: roc.json
+      md5: 3a697f5d45ef214de399b29eacecf711
+      size: 133770
+    - path: scores.json
+      md5: 095981f4ab6932a9c3a518cf4ee307da
+      size: 73
